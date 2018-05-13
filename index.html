@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>MyPage</title>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="css/shCore.css" rel="stylesheet" type="text/css" />
+  <link href="css/shThemeDefault.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<header>
+		<h3>Hola yo soy Neoooo</h3>
+		<hr>
+		<h1>Bienvenido </h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id eius officia facilis consectetur commodi, aspernatur cumque consequatur architecto! Fugit provident iusto maiores explicabo quisquam obcaecati, atque officia, magni suscipit odio.</p>
+	</header>
+	<hr>
+	<section>
+		<article>
+			<h2>Programación Dinámica | Parte 1 (Overlapping Subproblems Property)</h2>
+				<p>
+				La Programación Dinámica es un paradigma algorítmico que resuelve un problema complejo dividiéndolo en subproblemas y almacenando los resultados de los subproblemas para evitar volver a calcular los mismos resultados. A continuación se presentan las dos propiedades principales de un problema que sugieren que el problema dado puede ser resuelto usando programación dinámica.
+				</p>
+				<p>
+				En este post, discutiremos la primera propiedad (Subproblemas de Superposición) en detalle. La segunda propiedad de la programación dinámica se discute en el siguiente post, es decir, en la parte 2.
+				</p>
+				<ol>
+					<li>Overlapping Subproblems</li>
+					<li>Optimal Substructure</li>
+				</ol>
+				<h3>1) Subproblemas de solapamiento:</h3>
+				<p>
+					Al igual que Divide y Conquista, la Programación Dinámica combina soluciones a subproblemas. La Programación Dinámica se utiliza principalmente cuando se necesitan soluciones de los mismos subproblemas una y otra vez. En la programación dinámica, las soluciones calculadas a los subproblemas se almacenan en una tabla para que no tengan que volver a calcularse. Por lo tanto, la Programación Dinámica no es útil cuando no hay subproblemas comunes (superpuestos) porque no tiene sentido almacenar las soluciones si no se necesitan de nuevo. Por ejemplo, la búsqueda binaria no tiene subproblemas comunes. Si tomamos el ejemplo de seguir un programa recursivo para Números de Fibonacci, hay muchos subproblemas que se resuelven una y otra vez.
+				</p>
+				<pre>
+					/* simple recursive program for Fibonacci numbers */
+					int fib(int n)
+					{
+					   if ( n <= 1 )
+					      return n;
+					   return fib(n-1) + fib(n-2);
+					}
+				</pre>
+				<h5 align="center">Árbol de recursión para la ejecución de fib(5)</h5>
+				<pre>
+					                              
+					                         fib(5)
+					                     /             \
+					               fib(4)                fib(3)
+					             /      \                /     \
+					         fib(3)      fib(2)         fib(2)    fib(1)
+					        /     \        /    \       /    \
+					  fib(2)   fib(1)  fib(1) fib(0) fib(1) fib(0)
+					  /    \
+					fib(1) fib(0)
+				</pre>
+				<p>
+					Podemos ver que la función f(3) está siendo llamada 2 veces. Si hubiéramos almacenado el valor de f(3), entonces en lugar de calcularlo de nuevo, podríamos haber reutilizado el antiguo valor almacenado. Hay dos maneras diferentes de almacenar los valores para que estos valores puedan ser reutilizados:
+				</p>
+				<ul>
+					<li>a) Overlapping Subproblems</li>
+					<li>b) Optimal Substructure</li>
+				</ul>
+				<h4>a) Memotización (Top Down): </h4>
+				<p>
+					El programa memorizado para un problema es similar a la versión recursiva con una pequeña modificación que busca en una tabla de búsqueda antes de computar soluciones. Inicializamos una matriz de búsqueda con todos los valores iniciales como NIL. Cada vez que necesitamos una solución a un subproblema, primero buscamos en la tabla de consulta. Si el valor precalculado está ahí, entonces devolvemos ese valor, de lo contrario calculamos el valor y ponemos el resultado en la tabla de búsqueda para que pueda ser reutilizado más tarde ........
+				</p>
+				<h4>b) Tabulation (Bottom Up): </h4>
+				<p>
+					El programa tabulado para un problema dado construye una tabla de manera ascendente y devuelve la última entrada de la tabla. Por ejemplo, para el mismo número de Fibonacci, primero calculamos fib(0) luego fib(1) luego fib(2) luego fib(3) y así sucesivamente. Así que literalmente, estamos construyendo las soluciones de los subproblemas de abajo hacia arriba.
+				</p>
+				<p>
+					Tanto Tabulated como Memoized almacenan las soluciones de los subproblemas. En la versión Memoized, la tabla se rellena bajo demanda, mientras que en la versión Tabulada, a partir de la primera entrada, todas las entradas se rellenan una a una. A diferencia de la versión Tabulada, todas las entradas de la tabla de búsqueda no se rellenan necesariamente en la versión Memoizada. Por ejemplo, la solución Memoized del problema LCS no necesariamente llena todas las entradas.
+				</p>
+				<p>
+					Para ver la optimización lograda por las soluciones Memotizadas y Tabuladas sobre la solución Recursiva básica, vea el tiempo tomado por las siguientes ejecuciones para calcular el número 40 de Fibonacci:
+				</p>
+				<ul>
+					<li>Solución recurrente</li>
+					<li>Solución Memoized</li>
+					<li>Solución tabulada</li>
+				</ul>
+				<p>
+					El tiempo que toma el método de Recursión es mucho más que las dos técnicas de Programación Dinámica mencionadas anteriormente - Memoización y Tabulación!
+				</p>
+				<p>
+					También vea el método 2 del post Ugly Number para un ejemplo más simple donde tenemos subproblemas superpuestos y almacenamos los resultados de los subproblemas.
+				</p>
+				<p>
+					Estaremos cubriendo la Propiedad de Subestructura Óptima y algunos problemas más en futuros posts sobre Programación Dinámica.
+				</p>
+		</article>
+	</section>
+	<footer>
+		<hr>
+		<h2><a href="https://www.geeksforgeeks.org/dynamic-programming-set-1/">Fuente: https://www.geeksforgeeks.org/dynamic-programming-set-1/</a></h2>
+		<h2><a href="https://www.deepl.com/translator">Traducción realizada con el traductor www.DeepL.com/Translator</a></h2>
+    </footer>
+</body>
+</html>
